@@ -12,4 +12,6 @@ export const blur = nativeExpoUIModule.blur;
 export const clickable = nativeExpoUIModule.clickable;
 export const rotate = nativeExpoUIModule.rotate;
 export const zIndex = nativeExpoUIModule.zIndex;
+export const weight = nativeExpoUIModule.weight;
+export const testID = nativeExpoUIModule.testID;
 //# sourceMappingURL=modifiers.js.map

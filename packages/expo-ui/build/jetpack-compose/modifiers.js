@@ -15,4 +15,5 @@ export const zIndex = nativeExpoUIModule.zIndex;
 export const weight = nativeExpoUIModule.weight;
 export const testID = nativeExpoUIModule.testID;
 export const matchParentSize = nativeExpoUIModule.matchParentSize;
+export const animateContentSize = nativeExpoUIModule.animateContentSize;
 //# sourceMappingURL=modifiers.js.map

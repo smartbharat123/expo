@@ -14,4 +14,5 @@ export const rotate = nativeExpoUIModule.rotate;
 export const zIndex = nativeExpoUIModule.zIndex;
 export const weight = nativeExpoUIModule.weight;
 export const testID = nativeExpoUIModule.testID;
+export const matchParentSize = nativeExpoUIModule.matchParentSize;
 //# sourceMappingURL=modifiers.js.map

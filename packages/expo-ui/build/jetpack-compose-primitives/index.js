@@ -1,5 +1,14 @@
 import { requireNativeView } from 'expo';
 import { Platform } from 'react-native';
+const BoxNativeView = Platform.OS === 'android' ? requireNativeView('ExpoUI', 'BoxView') : null;
+export function Box(props) {
+    if (!BoxNativeView) {
+        return null;
+    }
+    return (<BoxNativeView {...props} 
+    // @ts-ignore
+    modifiers={props.modifiers?.map((m) => m.__expo_shared_object_id__)}/>);
+}
 const RowNativeView = Platform.OS === 'android' ? requireNativeView('ExpoUI', 'RowView') : null;
 export function Row(props) {
     if (!RowNativeView) {

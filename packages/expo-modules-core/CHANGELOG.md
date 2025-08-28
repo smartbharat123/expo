@@ -6,7 +6,7 @@
 
 ### 🎉 New features
 
-- [iOS] Add `AppContext` to views environment it can be accessed if needed.
+- [iOS] Add `AppContext` to views environment it can be accessed if needed. ([#39207](https://github.com/expo/expo/pull/39207) by [@alanjhughes](https://github.com/alanjhughes))
 
 ### 🐛 Bug fixes
 

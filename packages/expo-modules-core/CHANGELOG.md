@@ -6,6 +6,8 @@
 
 ### 🎉 New features
 
+- [iOS] Add `AppContext` to views environment it can be accessed if needed.
+
 ### 🐛 Bug fixes
 
 ### 💡 Others

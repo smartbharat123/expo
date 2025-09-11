@@ -8,7 +8,15 @@
 
 ### 🐛 Bug fixes
 
+- Re-expose Vercel adapter under `@expo/server/adapter/vercel` ([#39548](https://github.com/expo/expo/pull/39548) by [@krystofwoldrich](https://github.com/krystofwoldrich))
+
 ### 💡 Others
+
+## 0.7.3 — 2025-09-03
+
+### 🎉 New features
+
+- [web] add matcher support for server middleware ([#39225](https://github.com/expo/expo/pull/39225) by [@hassankhan](https://github.com/hassankhan))
 
 ## 0.7.2 — 2025-08-16
 

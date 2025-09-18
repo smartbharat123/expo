@@ -23,4 +23,5 @@ export declare function Capsule(props: CapsuleProps): import("react").JSX.Elemen
 export interface CircleProps extends CommonViewModifierProps {
 }
 export declare function Circle(props: CircleProps): import("react").JSX.Element;
+export declare function ConcentricRectangle(props: any): import("react").JSX.Element;
 //# sourceMappingURL=index.d.ts.map

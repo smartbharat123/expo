@@ -117,3 +117,19 @@ export function Circle(props: CircleProps) {
     />
   );
 }
+
+const ConcentricRectangleNativeView: React.ComponentType<any> = requireNativeView(
+  'ExpoUI',
+  'ConcentricRectangleView'
+);
+
+export function ConcentricRectangle(props: any) {
+  const { modifiers, ...restProps } = props;
+  return (
+    <ConcentricRectangleNativeView
+      {...restProps}
+      modifiers={modifiers}
+      {...(modifiers ? createViewModifierEventListener(modifiers) : undefined)}
+    />
+  );
+}

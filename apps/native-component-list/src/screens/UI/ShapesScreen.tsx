@@ -11,8 +11,17 @@ import {
   Section,
   Form,
   Text,
+  ConcentricRectangle,
+  ZStack,
 } from '@expo/ui/swift-ui';
-import { frame, shadow, fill } from '@expo/ui/swift-ui/modifiers';
+import {
+  frame,
+  shadow,
+  fill,
+  padding,
+  containerShape,
+  RoundedRectangularShape,
+} from '@expo/ui/swift-ui/modifiers';
 import React from 'react';
 
 export default function ShapesScreen() {
@@ -101,6 +110,20 @@ export default function ShapesScreen() {
               bottomTrailingRadius={20}
               modifiers={[frame({ width: 200, height: 100 }), fill('#BF5AF2')]}
             />
+          </VStack>
+        </Section>
+
+        <Section title="ConcentricRectangle">
+          <VStack spacing={16}>
+            <Text>ConcentricRectangle shape</Text>
+            <ZStack
+              modifiers={[
+                frame({ width: 200, height: 200 }),
+                containerShape(RoundedRectangularShape.rect(40)),
+              ]}>
+              <ConcentricRectangle modifiers={[fill('#000')]} />
+              <ConcentricRectangle modifiers={[fill('#007AFF'), padding({ all: 20 })]} />
+            </ZStack>
           </VStack>
         </Section>
       </Form>

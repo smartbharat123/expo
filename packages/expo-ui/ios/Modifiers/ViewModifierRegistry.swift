@@ -517,6 +517,14 @@ internal struct FillModifier: ViewModifier, Record {
   }
 }
 
+internal struct ContainerShapeModifier: ViewModifier, Record {
+  @Field var cornerRadius: CGFloat = 0
+
+  func body(content: Content) -> some View {
+    content.containerShape(.rect(cornerRadius: cornerRadius))
+  }
+}
+
 /**
  * A type-erased wrapper for `ViewModifier`
  */
@@ -968,6 +976,10 @@ extension ViewModifierRegistry {
 
     register("fill") { params, appContext, _ in
       return try FillModifier(from: params, appContext: appContext)
+    }
+
+    register("containerShape") { params, appContext, _ in
+      return try ContainerShapeModifier(from: params, appContext: appContext)
     }
   }
 }

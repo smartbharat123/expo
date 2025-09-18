@@ -7,6 +7,7 @@ import { ColorValue } from 'react-native';
 
 import { animation } from './animation/index';
 import { createModifier, ModifierConfig } from './createModifier';
+import { containerShape } from './containerShape';
 
 /**
  * Creates a modifier with an event listener.
@@ -499,6 +500,7 @@ export type BuiltInModifier =
   | ReturnType<typeof glassEffect>
   | ReturnType<typeof glassEffectId>
   | ReturnType<typeof fill>
+  | ReturnType<typeof containerShape>
   | ReturnType<typeof animation>;
 
 /**
@@ -539,3 +541,4 @@ export const filterModifiers = (modifiers: unknown[]): ModifierConfig[] => {
 };
 
 export * from './animation/index';
+export * from './containerShape/index';

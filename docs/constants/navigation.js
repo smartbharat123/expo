@@ -666,7 +666,10 @@ const versionsReference = VERSIONS.reduce(
       }),
       makeSection(
         'Expo SDK',
-        shiftEntryToFront(insertUIGroupInOrder(version), entry => entry.name === 'Expo'),
+        shiftEntryToFront(
+          pagesFromDir(`versions/${version}/sdk`).filter(entry => !entry.inExpoGo),
+          entry => entry.name === 'Expo'
+        ),
         { expanded: true }
       ),
       makeSection(
@@ -789,11 +792,24 @@ function makePage(file) {
  * Load all pages from a single directory.
  */
 function pagesFromDir(dir) {
-  return fs
-    .readdirSync(path.resolve(PAGES_DIR, dir), { withFileTypes: true })
+  const dirPath = path.resolve(PAGES_DIR, dir);
+  const entities = fs.readdirSync(dirPath, { withFileTypes: true });
+  
+  const files = entities
     .filter(entity => entity.isFile())
-    .map(file => makePage(path.join(dir, file.name)))
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .map(file => makePage(path.join(dir, file.name)));
+  
+  const folders = entities
+    .filter(entity => entity.isDirectory())
+    .map(folder => {
+      const folderPages = pagesFromDir(path.join(dir, folder.name));
+      return folderPages.length > 0 
+        ? makeGroup(folder.name, folderPages, { expanded: true })
+        : null;
+    })
+    .filter(Boolean);
+  
+  return [...files, ...folders].sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
@@ -812,34 +828,4 @@ function pageUrl(file) {
 
 function shiftEntryToFront(array, findFunction) {
   return [...array.filter(findFunction), ...array.filter(item => !findFunction(item))];
-}
-
-/**
- * Insert UI group in the correct alphabetical position where the original UI page was
- */
-function insertUIGroupInOrder(version) {
-  const allPages = pagesFromDir(`versions/${version}/sdk`)
-    .filter(entry => !entry.inExpoGo)
-    .filter(entry => !entry.href.includes('/ui'));
-
-  if (version === 'v54.0.0' || version === 'unversioned') {
-    const uiGroup = makeGroup(
-      'UI',
-      [
-        makePage(`versions/${version}/sdk/ui-ios.mdx`),
-        makePage(`versions/${version}/sdk/ui-android.mdx`),
-      ],
-      { expanded: true }
-    );
-
-    const insertIndex = allPages.findIndex(page => page.name > 'UI');
-
-    if (insertIndex === -1) {
-      return [...allPages, uiGroup];
-    } else {
-      return [...allPages.slice(0, insertIndex), uiGroup, ...allPages.slice(insertIndex)];
-    }
-  }
-
-  return allPages;
 }

@@ -666,10 +666,7 @@ const versionsReference = VERSIONS.reduce(
       }),
       makeSection(
         'Expo SDK',
-        shiftEntryToFront(
-          pagesFromDir(`versions/${version}/sdk`).filter(entry => !entry.inExpoGo),
-          entry => entry.name === 'Expo'
-        ),
+        shiftEntryToFront(insertUIGroupInOrder(version), entry => entry.name === 'Expo'),
         { expanded: true }
       ),
       makeSection(
@@ -815,4 +812,34 @@ function pageUrl(file) {
 
 function shiftEntryToFront(array, findFunction) {
   return [...array.filter(findFunction), ...array.filter(item => !findFunction(item))];
+}
+
+/**
+ * Insert UI group in the correct alphabetical position where the original UI page was
+ */
+function insertUIGroupInOrder(version) {
+  const allPages = pagesFromDir(`versions/${version}/sdk`)
+    .filter(entry => !entry.inExpoGo)
+    .filter(entry => !entry.href.includes('/ui'));
+
+  if (version === 'v54.0.0' || version === 'unversioned') {
+    const uiGroup = makeGroup(
+      'UI',
+      [
+        makePage(`versions/${version}/sdk/ui-ios.mdx`),
+        makePage(`versions/${version}/sdk/ui-android.mdx`),
+      ],
+      { expanded: true }
+    );
+
+    const insertIndex = allPages.findIndex(page => page.name > 'UI');
+
+    if (insertIndex === -1) {
+      return [...allPages, uiGroup];
+    } else {
+      return [...allPages.slice(0, insertIndex), uiGroup, ...allPages.slice(insertIndex)];
+    }
+  }
+
+  return allPages;
 }

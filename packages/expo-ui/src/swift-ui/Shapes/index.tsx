@@ -118,12 +118,42 @@ export function Circle(props: CircleProps) {
   );
 }
 
-const ConcentricRectangleNativeView: React.ComponentType<any> = requireNativeView(
-  'ExpoUI',
-  'ConcentricRectangleView'
-);
+export type CornerStyleConfig =
+  | {
+      type: 'concentric';
+      minimumRadius?: number;
+    }
+  | {
+      type: 'fixed';
+      radius: number;
+    };
 
-export function ConcentricRectangle(props: any) {
+export interface ConcentricRectangleCornerParams {
+  topLeadingCorner: CornerStyleConfig;
+  topTrailingCorner: CornerStyleConfig;
+  bottomLeadingCorner: CornerStyleConfig;
+  bottomTrailingCorner: CornerStyleConfig;
+}
+
+export interface ConcentricRectangleProps extends CommonViewModifierProps {
+  corners?: ConcentricRectangleCornerParams;
+}
+
+export const EdgeCornerStyle = {
+  concentric: (minimumRadius?: number): CornerStyleConfig => ({
+    type: 'concentric',
+    minimumRadius,
+  }),
+  fixed: (radius: number): CornerStyleConfig => ({
+    type: 'fixed',
+    radius,
+  }),
+};
+
+const ConcentricRectangleNativeView: React.ComponentType<ConcentricRectangleProps> =
+  requireNativeView('ExpoUI', 'ConcentricRectangleView');
+
+export function ConcentricRectangle(props: ConcentricRectangleProps) {
   const { modifiers, ...restProps } = props;
   return (
     <ConcentricRectangleNativeView

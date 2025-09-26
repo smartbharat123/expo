@@ -605,7 +605,6 @@ export class MetroBundlerDevServer extends BundlerDevServer {
 
     const transformOptions: TransformInputOptions = {
       dev: expoBundleOptions.dev ?? true,
-      hot: true,
       minify: expoBundleOptions.minify ?? false,
       type: 'module',
       unstable_transformProfile:

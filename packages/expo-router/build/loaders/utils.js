@@ -14,7 +14,7 @@ function getLoaderModulePath(pathname) {
     const cleanPath = new URL(pathname, 'http://localhost').pathname;
     const normalizedPath = cleanPath === '/' ? '/' : cleanPath.replace(/\/$/, '');
     const pathSegment = normalizedPath === '/' ? '/index' : normalizedPath;
-    return `/_expo/loaders${pathSegment}.json`;
+    return `/_expo/loaders${pathSegment}`;
 }
 /**
  * Fetches and parses a loader module from the given route path.

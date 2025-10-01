@@ -11,7 +11,7 @@ export function getLoaderModulePath(pathname: string): string {
   const normalizedPath = cleanPath === '/' ? '/' : cleanPath.replace(/\/$/, '');
   const pathSegment = normalizedPath === '/' ? '/index' : normalizedPath;
 
-  return `/_expo/loaders${pathSegment}.json`;
+  return `/_expo/loaders${pathSegment}`;
 }
 
 /**

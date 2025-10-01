@@ -208,7 +208,7 @@ export async function exportFromServerAsync(
     manifest,
     exportServer,
     async renderAsync({ pathname, route }) {
-      const template = await renderAsync(pathname);
+      const template = await renderAsync(pathname, route);
       let html = await serializeHtmlWithAssets({
         isExporting,
         resources: resources.artifacts,

@@ -1,6 +1,9 @@
 import type { RouteNode } from 'expo-router/build/Route';
 
-import type { ExpoRouterServerManifestV1Route } from './fetchRouterManifest';
+import type {
+  ExpoRouterServerManifestV1,
+  ExpoRouterServerManifestV1Route,
+} from './fetchRouterManifest';
 
 /**
  * Unified route information needed for loader execution
@@ -15,21 +18,40 @@ export interface ResolvedLoaderRoute {
 }
 
 type FromRuntimeManifestRouteOptions = {
-  appDir?: string;
+  appDir: string;
+  serverManifest: ExpoRouterServerManifestV1<RegExp>;
 };
 
 /**
  * Converts a `RouteNode` to a `ResolvedLoaderRoute` object using runtime manifest lookup
  */
-// export function fromRuntimeManifestRoute(
-//   pathname: string,
-//   route: RouteNode,
-//   options: FromRuntimeManifestRouteOptions
-// ): ResolvedLoaderRoute | null {
-//   if (route.generated) {
-//     return null;
-//   }
-// }
+export function fromRuntimeManifestRoute(
+  pathname: string,
+  route: RouteNode,
+  options: FromRuntimeManifestRouteOptions
+): ResolvedLoaderRoute | null {
+  if (route.generated) {
+    return null;
+  }
+
+  // TODO(@hassankhan): Add safety check here
+  const relativeFile = route.entryPoints.at(-1).replace(options.appDir, '');
+  const parentPath = relativeFile.replace(/\.[j|t]s(x)?/, '');
+
+  const parentManifestRoute = options.serverManifest.htmlRoutes.find((r) =>
+    r.namedRegex.test(parentPath)
+  );
+
+  if (!parentManifestRoute) {
+    return null;
+  }
+
+  return {
+    file: `.${relativeFile}`,
+    pathname,
+    params: extractParams(pathname, parentManifestRoute),
+  };
+}
 
 /**
  * Converts a `ExpoRouterServerManifestV1Route` to a `ResolvedLoaderRoute` object using server manifest lookup

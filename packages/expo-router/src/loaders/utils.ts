@@ -2,9 +2,9 @@
  * Convert a route pathname to a loader module path.
  *
  * @example
- * getLoaderModulePath(`/`);       // `/_expo/loaders/index.json`
- * getLoaderModulePath(`/about`)   // `/_expo/loaders/about.json`
- * getLoaderModulePath(`/posts/1`) // `/_expo/loaders/posts/1.json`
+ * getLoaderModulePath(`/`);       // `/_expo/loaders/index`
+ * getLoaderModulePath(`/about`)   // `/_expo/loaders/about`
+ * getLoaderModulePath(`/posts/1`) // `/_expo/loaders/posts/1`
  */
 export function getLoaderModulePath(pathname: string): string {
   const cleanPath = new URL(pathname, 'http://localhost').pathname;

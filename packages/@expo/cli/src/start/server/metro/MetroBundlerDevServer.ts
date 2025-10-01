@@ -399,7 +399,7 @@ export class MetroBundlerDevServer extends BundlerDevServer {
     const { routerRoot } = this.instanceMetroOptions;
     assert(
       routerRoot != null,
-      'The server must be started before calling exportExpoRouterApiRoutesAsync.'
+      'The server must be started before calling getStaticRenderFunctionAsync.'
     );
 
     const appDir = path.join(this.projectRoot, routerRoot);

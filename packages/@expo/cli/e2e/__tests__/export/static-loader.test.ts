@@ -14,7 +14,6 @@ describe('static loader', () => {
 
   beforeAll(async () => {
     await executeExpoAsync(projectRoot, ['export', '-p', 'web', '--output-dir', outputName], {
-      verbose: true,
       env: {
         NODE_ENV: 'production',
         EXPO_USE_STATIC: 'static',
@@ -42,8 +41,6 @@ describe('static loader', () => {
 
     it('has expected files', async () => {
       const files = findProjectFiles(path.join(projectRoot, outputName));
-
-      console.log({ files });
 
       // The wrapper should not be included as a route.
       expect(files).not.toContain('+html.html');

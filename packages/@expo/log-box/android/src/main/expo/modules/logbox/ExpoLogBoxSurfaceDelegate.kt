@@ -27,6 +27,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import java.io.IOException
 
+
 class ExpoLogBoxSurfaceDelegate(private val devSupportManager: DevSupportManager) :
     SurfaceDelegate {
 
@@ -68,7 +69,6 @@ class ExpoLogBoxSurfaceDelegate(private val devSupportManager: DevSupportManager
         webView = WebView(context).apply {
             setBackgroundColor(Color.BLACK)
             settings.javaScriptEnabled = true
-            webViewClient = WebViewClient()
             setWebContentsDebuggingEnabled(true);
         }
 
@@ -179,7 +179,10 @@ class ExpoLogBoxSurfaceDelegate(private val devSupportManager: DevSupportManager
     }
 
     override fun hide() {
-        dialog?.dismiss()
+        // Build Errors are not dismissable
+        // The hide function is also called when application goes to background
+        // which causes the error disappear and leave the app on black screen
+        // dialog?.dismiss()
     }
 
     override fun isShowing(): Boolean {

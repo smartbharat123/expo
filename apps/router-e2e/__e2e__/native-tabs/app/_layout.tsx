@@ -7,7 +7,7 @@ import { Appearance, Platform, useColorScheme } from 'react-native';
 import { ActiveTabsContext } from '../utils/active-tabs-context';
 
 if (process.env.EXPO_OS !== 'web') {
-  Appearance.setColorScheme(null);
+  Appearance.setColorScheme('unspecified');
 }
 
 export default function Layout() {
@@ -29,6 +29,10 @@ export default function Layout() {
         // badgeBackgroundColor="green"
         // tintColor="orange"
         // iconColor={Platform.OS === 'android' ? '#888' : undefined}
+        // selectedLabelStyle={{
+        //   color: 'red',
+        // }}
+        // selectedIconColor="#00f"
         // iOS only
         // blurEffect="systemChromeMaterial"
         // minimizeBehavior="onScrollDown"

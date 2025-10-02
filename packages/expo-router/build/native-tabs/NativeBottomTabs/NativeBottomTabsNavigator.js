@@ -55,6 +55,8 @@ function NativeTabsNavigator({ children, backBehavior = defaultBackBehavior, ...
         backBehavior,
         screenOptions: {
             disableTransparentOnScrollEdge: rest.disableTransparentOnScrollEdge,
+            selectedLabelStyle: rest.selectedLabelStyle,
+            selectedIconColor: rest.selectedIconColor,
         },
     });
     const { state, descriptors } = builder;

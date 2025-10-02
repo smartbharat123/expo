@@ -31,6 +31,7 @@ featureFlags.experiment.controlledBottomTabs = false;
 
 const supportedBlurEffectsSet = new Set<string>(SUPPORTED_BLUR_EFFECTS);
 
+// TODO(ubax): refactor this component, so that testing options passed to screen is easier
 export function NativeTabsView(props: NativeTabsViewProps) {
   const { builder, minimizeBehavior, disableIndicator, focusedIndex } = props;
   const { state, descriptors, navigation } = builder;

@@ -214,9 +214,21 @@ export interface NativeTabsProps extends PropsWithChildren {
      */
     labelStyle?: NativeTabsLabelStyle;
     /**
+     * The style of the selected label in the tab bar.
+     *
+     * This can be overridden by `selectedStyle` supplied to tab `Label`.
+     */
+    selectedLabelStyle?: NativeTabsLabelStyle;
+    /**
      * The color of every tab icon in the tab bar.
      */
     iconColor?: ColorValue;
+    /**
+     * The color of the icon when the tab is selected.
+     *
+     * This can be overridden by `selectedColor` supplied to tab `Icon`.
+     */
+    selectedIconColor?: ColorValue;
     /**
      * The tint color of the tab icon.
      *

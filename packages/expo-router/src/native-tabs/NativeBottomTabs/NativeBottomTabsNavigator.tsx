@@ -43,6 +43,8 @@ export function NativeTabsNavigator({
     backBehavior,
     screenOptions: {
       disableTransparentOnScrollEdge: rest.disableTransparentOnScrollEdge,
+      selectedLabelStyle: rest.selectedLabelStyle,
+      selectedIconColor: rest.selectedIconColor,
     },
   });
 

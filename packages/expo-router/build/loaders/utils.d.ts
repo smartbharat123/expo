@@ -1,5 +1,5 @@
 /**
- * Convert a route pathname to a loader module path.
+ * Convert a route's pathname to a loader module path.
  *
  * @example
  * getLoaderModulePath(`/`);       // `/_expo/loaders/index`

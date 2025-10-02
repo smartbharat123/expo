@@ -1609,7 +1609,7 @@ export class MetroBundlerDevServer extends BundlerDevServer {
     let loaderData: Record<string, any> | undefined;
 
     try {
-      debug('Matched route loader to file: ', route.file);
+      debug(`Matched ${location.pathname} to file: ${route.file}`);
 
       const appDir = path.join(this.projectRoot, routerRoot);
       let modulePath = route.file;

@@ -17,7 +17,7 @@ const BABEL_TRANSFORM_ERROR_FORMAT =
 const BABEL_CODE_FRAME_ERROR_FORMAT =
   /^(?:TransformError )?(?:.*):? (?:.*?)([/|\\].*): ([\s\S]+?)\n([ >]{2}[\d\s]+ \|[\s\S]+|\u{001b}[\s\S]+)/u;
 const METRO_ERROR_FORMAT =
-  /^(?:InternalError Metro has encountered an error:) (.*): (.*) \((\d+):(\d+)\)\n\n([\s\S]+)/u;
+	/^(?:(?:InternalError )?Metro has encountered an error:) (.*): (.*) \((\d+):(\d+)\)\n\n([\s\S]+)/u;
 
 export type ExtendedExceptionData = ExceptionData & {
   isComponentError: boolean;
@@ -130,7 +130,6 @@ export function parseLogBoxException(error: ExtendedExceptionData): LogBoxLogDat
 
   const metroInternalError = message.match(METRO_ERROR_FORMAT);
   if (metroInternalError) {
-    debugger;
     const [content, fileName, row, column, codeFrame] = metroInternalError.slice(1);
 
     return {

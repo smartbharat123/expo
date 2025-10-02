@@ -222,7 +222,7 @@ export function LogBoxContent({
   };
   const [collapsed, setCollapsed] = useState(true);
 
-  const headerTitle = HEADER_TITLE_MAP[log.level] ?? log.type;
+  const headerTitle = log.type ?? HEADER_TITLE_MAP[log.level];
 
   const headerBlurRef = React.useRef<HTMLDivElement>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
